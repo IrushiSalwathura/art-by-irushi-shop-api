@@ -3,6 +3,10 @@ package com.personal.artbyirushishopapi.entities;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
@@ -20,6 +24,9 @@ public class Customer {
     @Column(name = "name")
     private String name;
 
+    @Column(name = "dob")
+    private Date dob;
+
     @Column(name = "address")
     private String address;
 
@@ -28,4 +35,5 @@ public class Customer {
 
     @Column(name = "phone")
     private String phone;
+
 }
