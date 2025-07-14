@@ -26,6 +26,12 @@ public class Item {
     @Column(name = "unit_price")
     private BigDecimal price;
 
+    @Column(name = "image_url")
+    private String image_url;
+
+    @Column(name = "description")
+    private String description;
+
     @OneToMany(mappedBy = "item", cascade = CascadeType.ALL)
     private Set<OrderItem> orderItems = new HashSet<>();
 }

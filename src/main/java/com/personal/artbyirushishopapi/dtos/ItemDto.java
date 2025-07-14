@@ -9,4 +9,6 @@ public class ItemDto {
     private Long id;
     private String name;
     private BigDecimal price;
+    private String image_url;
+    private String description;
 }
