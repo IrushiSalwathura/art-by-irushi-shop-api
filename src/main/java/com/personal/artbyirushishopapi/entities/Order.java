@@ -4,8 +4,7 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.List;
 
 @Builder
 @AllArgsConstructor
@@ -35,6 +34,7 @@ public class Order {
     @ToString.Exclude
     private Customer customer;
 
-    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
-    private Set<OrderItem> orderItems = new HashSet<>();
+    //Dont do this, OrderItem already has ManyToOne
+//    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
+//    private List<OrderItem> orderItems;
 }

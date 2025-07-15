@@ -2,8 +2,10 @@ package com.personal.artbyirushishopapi.controllers;
 
 import com.personal.artbyirushishopapi.dtos.CustomerDto;
 import com.personal.artbyirushishopapi.dtos.RegisterCustomerRequest;
+import com.personal.artbyirushishopapi.entities.Customer;
 import com.personal.artbyirushishopapi.mappers.CustomerMapper;
 import com.personal.artbyirushishopapi.repositories.CustomerRepository;
+import com.personal.artbyirushishopapi.service.CustomerService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -20,18 +22,11 @@ public class CustomerController {
 
     private final CustomerMapper customerMapper;
     private final CustomerRepository customerRepository;
+    private final CustomerService customerService;
 
     @PostMapping
     public ResponseEntity<?> createCustomer(@RequestBody RegisterCustomerRequest request, UriComponentsBuilder uriBuilder){
-        var customer = customerMapper.toEntity(request);
-
-        if((!customerRepository.existsByEmail(request.getEmail())) && (!customerRepository.existsByDob(request.getDob()))){
-            customerRepository.save(customer);
-            var customerDto = customerMapper.toDto(customer);
-            var uri = uriBuilder.path("/customers/{id}").buildAndExpand(customerDto.getId()).toUri();
-            return ResponseEntity.created(uri).body(customerDto);
-        }else{
-            return ResponseEntity.status(HttpStatus.CONFLICT).body("The customer is already available");
-        }
+        RegisterCustomerRequest createCustomer = customerService.createCustomer(request);
+        return new ResponseEntity<>(createCustomer, HttpStatus.CREATED);
     }
 }

@@ -4,6 +4,7 @@ import com.personal.artbyirushishopapi.dtos.OrderDto;
 import com.personal.artbyirushishopapi.entities.Order;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
+import org.mapstruct.MappingTarget;
 
 @Mapper(componentModel = "spring")
 public interface OrderMapper {

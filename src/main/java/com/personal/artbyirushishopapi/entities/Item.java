@@ -24,7 +24,7 @@ public class Item {
     private String name;
 
     @Column(name = "unit_price")
-    private BigDecimal price;
+    private double price;
 
     @Column(name = "image_url")
     private String image_url;
@@ -32,6 +32,7 @@ public class Item {
     @Column(name = "description")
     private String description;
 
-    @OneToMany(mappedBy = "item", cascade = CascadeType.ALL)
-    private Set<OrderItem> orderItems = new HashSet<>();
+    //ManyToOne already added in the OrderItem, so no need to add this
+//    @OneToMany(mappedBy = "item", cascade = CascadeType.ALL)
+//    private Set<OrderItem> orderItems = new HashSet<>();
 }

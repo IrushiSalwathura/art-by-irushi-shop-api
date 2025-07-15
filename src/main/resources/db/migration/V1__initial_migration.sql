@@ -32,8 +32,16 @@ CREATE TABLE order_items (
     order_id BIGINT NOT NULL,
     item_id BIGINT NOT NULL,
     quantity INT UNSIGNED DEFAULT 0 NULL,
-    total_price DECIMAL(10,2),
+    price DECIMAL(10,2),
     UNIQUE (order_id, item_id),
     FOREIGN KEY (order_id) REFERENCES orders(id),
     FOREIGN KEY (item_id) REFERENCES items(id)
+);
+
+CREATE TABLE payments (
+  id BIGINT AUTO_INCREMENT PRIMARY KEY,
+  reference VARCHAR(255) NOT NULL,
+  payment_total DECIMAL(10, 2) NOT NULL,
+  orderId BIGINT NOT NULL,
+  FOREIGN KEY (orderId) REFERENCES orders(id)
 );
