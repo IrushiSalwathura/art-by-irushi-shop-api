@@ -1,6 +1,5 @@
 package com.personal.artbyirushishopapi.service;
 
-import com.personal.artbyirushishopapi.dtos.CustomerDto;
 import com.personal.artbyirushishopapi.dtos.RegisterCustomerRequest;
 import com.personal.artbyirushishopapi.entities.Customer;
 import com.personal.artbyirushishopapi.repositories.CustomerRepository;

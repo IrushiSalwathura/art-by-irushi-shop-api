@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class ItemService {
@@ -18,6 +19,14 @@ public class ItemService {
 
     public List<ItemDto> getAllItems(){
         List<Item> items = itemRepository.findAll();
-        return items.stream().map(itemMapper::toDto).toList();
+        return items.stream().map(item -> {
+                        ItemDto itemDto = new ItemDto();
+                        itemDto.setName(item.getName());
+                        itemDto.setPrice(item.getPrice());
+                        itemDto.setImage_url(item.getImage_url());
+                        itemDto.setDescription(item.getDescription());
+                        return itemDto;
+                        })
+                .collect(Collectors.toList());
     }
 }

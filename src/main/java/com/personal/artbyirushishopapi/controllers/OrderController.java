@@ -1,19 +1,14 @@
 package com.personal.artbyirushishopapi.controllers;
 
-import com.personal.artbyirushishopapi.dtos.OrderDto;
 import com.personal.artbyirushishopapi.dtos.OrderRequestDto;
 import com.personal.artbyirushishopapi.dtos.OrderStatusUpdateDto;
 import com.personal.artbyirushishopapi.entities.Order;
-import com.personal.artbyirushishopapi.mappers.OrderMapper;
-import com.personal.artbyirushishopapi.repositories.CustomerRepository;
-import com.personal.artbyirushishopapi.repositories.OrderRepository;
 import com.personal.artbyirushishopapi.service.OrderService;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.util.UriComponentsBuilder;
 
 @RestController
 @AllArgsConstructor
