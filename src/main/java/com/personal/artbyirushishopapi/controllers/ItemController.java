@@ -4,6 +4,7 @@ import com.personal.artbyirushishopapi.dtos.ItemDto;
 import com.personal.artbyirushishopapi.entities.Item;
 import com.personal.artbyirushishopapi.mappers.ItemMapper;
 import com.personal.artbyirushishopapi.repositories.ItemRepository;
+import com.personal.artbyirushishopapi.service.ItemService;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,13 +16,11 @@ import java.util.List;
 @AllArgsConstructor
 @RequestMapping("/items")
 public class ItemController {
-    private final ItemRepository itemRepository;
-    private final ItemMapper itemMapper;
+    private final ItemService itemService;
 
     @GetMapping
     public List<ItemDto> getAllItems() {
-        List<Item> items = itemRepository.findAll();
-        return items.stream().map(itemMapper::toDto).toList();
+        return itemService.getAllItems();
     }
 
 }
