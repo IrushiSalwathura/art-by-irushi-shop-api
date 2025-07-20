@@ -42,6 +42,6 @@ CREATE TABLE payments (
   id BIGINT AUTO_INCREMENT PRIMARY KEY,
   reference VARCHAR(255) NOT NULL,
   payment_total DECIMAL(10, 2) NOT NULL,
-  orderId BIGINT NOT NULL,
-  FOREIGN KEY (orderId) REFERENCES orders(id)
+  order_id BIGINT NOT NULL,
+  FOREIGN KEY (order_id) REFERENCES orders(id)
 );

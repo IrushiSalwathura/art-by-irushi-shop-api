@@ -1,5 +1,6 @@
 package com.personal.artbyirushishopapi.service;
 
+import com.personal.artbyirushishopapi.dtos.OrderDto;
 import com.personal.artbyirushishopapi.dtos.OrderItemsDto;
 import com.personal.artbyirushishopapi.dtos.OrderRequestDto;
 import com.personal.artbyirushishopapi.entities.Customer;
@@ -12,6 +13,7 @@ import com.personal.artbyirushishopapi.repositories.OrderItemRepository;
 import com.personal.artbyirushishopapi.repositories.OrderRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,7 +30,7 @@ public class OrderService {
     @Autowired
     private OrderItemRepository orderItemRepository;
 
-    public Order createOrder(OrderRequestDto orderRequestDto) {
+    public OrderRequestDto createOrder(@RequestBody OrderRequestDto orderRequestDto) {
         Customer customer = customerRepository.findById(orderRequestDto.getCustomerId())
                 .orElseThrow(() -> new RuntimeException("Customer not found"));
 
@@ -38,8 +40,8 @@ public class OrderService {
         order.setDescription(orderRequestDto.getDescription());
         order.setStatus(orderRequestDto.getStatus());
 
-        orderRequestDto.setId(order.getId());
         Order savedOrder = orderRepository.save(order); //new Id
+        orderRequestDto.setId(savedOrder.getId());
 
         //Saving Order Items
         List<OrderItem> orderItems = new ArrayList<>();
@@ -58,7 +60,7 @@ public class OrderService {
             orderItemRepository.save(orderItem);
         }
 
-        return savedOrder;
+        return orderRequestDto;
     }
 
     public Order updateOrderStatus(Long id, String newStatus) {
