@@ -3,9 +3,7 @@ package com.personal.artbyirushishopapi.entities;
 import jakarta.persistence.*;
 import lombok.*;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import java.time.LocalDate;
 
 @Builder
 @AllArgsConstructor
@@ -25,7 +23,7 @@ public class Customer {
     private String name;
 
     @Column(name = "dob")
-    private Date dob;
+    private LocalDate dob;
 
     @Column(name = "address")
     private String address;

@@ -1,10 +1,10 @@
 package com.personal.artbyirushishopapi.entities;
 
+import com.personal.artbyirushishopapi.enums.OrderStatus;
 import jakarta.persistence.*;
 import lombok.*;
 
-import java.util.Date;
-import java.util.List;
+import java.time.LocalDate;
 
 @Builder
 @AllArgsConstructor
@@ -24,10 +24,11 @@ public class Order {
     private String description;
 
     @Column(name = "date")
-    private Date date;
+    private LocalDate date;
 
     @Column(name = "status")
-    private String status;
+    @Enumerated(EnumType.STRING)
+    private OrderStatus status;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "customer_id")

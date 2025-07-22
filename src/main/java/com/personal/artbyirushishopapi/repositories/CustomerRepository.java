@@ -7,5 +7,5 @@ import java.util.Date;
 
 public interface CustomerRepository  extends CrudRepository<Customer, Long> {
     boolean existsByEmail(String email);
-    boolean existsByDob(Date dob);
+    Customer findByEmail(String email);
 }

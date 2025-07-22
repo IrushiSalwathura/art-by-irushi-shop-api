@@ -2,6 +2,7 @@ package com.personal.artbyirushishopapi.controllers;
 
 import com.personal.artbyirushishopapi.dtos.PaymentDto;
 import com.personal.artbyirushishopapi.entities.Payment;
+import com.personal.artbyirushishopapi.response.PaymentResponse;
 import com.personal.artbyirushishopapi.service.PaymentService;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,8 +21,7 @@ public class PaymentController {
     private final PaymentService paymentService;
 
     @PostMapping
-    public ResponseEntity<PaymentDto> processPayment(@RequestBody PaymentDto paymentDto) {
-        PaymentDto responsePaymentDto = paymentService.processPayment(paymentDto);
-        return new ResponseEntity<>(responsePaymentDto, HttpStatus.CREATED);
+    public ResponseEntity<PaymentResponse> processPayment(@RequestBody PaymentDto paymentDto) {
+        return paymentService.processPayment(paymentDto);
     }
 }

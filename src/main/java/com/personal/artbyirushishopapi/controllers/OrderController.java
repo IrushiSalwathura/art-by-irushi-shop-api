@@ -3,6 +3,7 @@ package com.personal.artbyirushishopapi.controllers;
 import com.personal.artbyirushishopapi.dtos.OrderRequestDto;
 import com.personal.artbyirushishopapi.dtos.OrderStatusUpdateDto;
 import com.personal.artbyirushishopapi.entities.Order;
+import com.personal.artbyirushishopapi.response.OrderResponse;
 import com.personal.artbyirushishopapi.service.OrderService;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,14 +19,12 @@ public class OrderController {
     private OrderService orderService;
 
     @PostMapping
-    public ResponseEntity<OrderRequestDto> createOrder(@RequestBody OrderRequestDto orderRequest){
-        OrderRequestDto createOrder = orderService.createOrder(orderRequest);
-        return new ResponseEntity<>(createOrder, HttpStatus.CREATED);
+    public ResponseEntity<OrderResponse> createOrder(@RequestBody OrderRequestDto orderRequest){
+        return orderService.createOrder(orderRequest);
     }
 
     @PutMapping("/{id}/status")
-    public ResponseEntity<Order> updateOrderStatus(@PathVariable Long id, @RequestBody OrderStatusUpdateDto statusDto){
-        Order updateStatus = orderService.updateOrderStatus(id, statusDto.getStatus());
-        return new ResponseEntity<>(updateStatus, HttpStatus.OK);
+    public ResponseEntity<OrderResponse> placeOrder(@PathVariable Long id, @RequestBody OrderStatusUpdateDto statusDto){
+        return orderService.placeOrder(id, statusDto.getStatus());
     }
 }

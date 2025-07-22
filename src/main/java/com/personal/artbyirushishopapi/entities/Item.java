@@ -3,10 +3,6 @@ package com.personal.artbyirushishopapi.entities;
 import jakarta.persistence.*;
 import lombok.*;
 
-import java.math.BigDecimal;
-import java.util.HashSet;
-import java.util.Set;
-
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
@@ -27,7 +23,7 @@ public class Item {
     private double price;
 
     @Column(name = "image_url")
-    private String image_url;
+    private String imageUrl;
 
     @Column(name = "description")
     private String description;

@@ -1,15 +1,15 @@
 package com.personal.artbyirushishopapi.dtos;
 
+import com.personal.artbyirushishopapi.enums.OrderStatus;
 import lombok.Data;
 
-import java.util.Date;
-import java.util.List;
+import java.time.LocalDate;
 
 @Data
 public class OrderDto {
     private Long id;
     private String description;
-    private Date date;
-    private String status;
+    private LocalDate date;
+    private OrderStatus status;
     private Long customerId;
 }
